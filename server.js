@@ -29,8 +29,11 @@ app.get('/movie', function movieHandler(req, res) {
     let response = MOVIES;
 
     if (req.query.genre) {
+        console.log(req.query.genre)
+        console.log(response[0].genre)
         response = response.filter(movie => {
-            movie.genre.toLowerCase().includes(req.query.genre.toLowerCase())
+            movie.genre.toLowerCase().includes(req.query.country.toLowerCase())
+
         })
     }
     if (req.query.country) {
@@ -43,7 +46,8 @@ app.get('/movie', function movieHandler(req, res) {
             Number(movie.avg_vote) >= Number(req.query.avg_vote)
         })
     }
-    res.json(response)
+    console.log(response)
+    res.json(response).send();
 })
 
 const PORT = 6000
